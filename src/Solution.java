@@ -18,11 +18,6 @@ public class Solution {
 			String flatTree = br.readLine();
 			hierarchy = generateHierarchy(flatTree, topicSize - 1);
 			
-			// Print out of the child -> parent map.
-			for (String key : hierarchy.keySet()) {
-				System.out.println(String.format("%s -> %s", key, hierarchy.get(key)));
-			}
-			
 			// Load in the questions.
 			int questionSize = Integer.parseInt(br.readLine());
 			for (int i = 0; i < questionSize; i++) {
@@ -40,6 +35,8 @@ public class Solution {
 						node.setResult(topic, numb + 1);
 					}
 					String parent = hierarchy.get(topic);
+					
+					// Update the question count of all parents
 					while (parent != null) {
 						numb = node.getResult(parent);
 						if (numb == null) {
@@ -75,6 +72,8 @@ public class Solution {
 				
 				System.out.println(numb);
 			}
+			
+			br.close();
 		}
 
 	}
